@@ -1,0 +1,231 @@
+<style>
+  
+footer{
+	background-color: #111111;
+	padding: 20px 15px;
+	overflow: hidden;
+}
+
+footer .footer-containertent{
+	text-align: center;
+}
+
+footer .footer-logo{
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+footer p{
+	color: #828282;
+	margin-bottom: 15px;
+	font-size: 13px;
+}
+
+footer ul {
+	display: inline-block;
+}
+
+footer ul li{
+	float: left;
+	margin-right: 15px;
+}
+
+footer ul li:last-child{
+	margin-right: 0;
+}
+
+footer ul li a{
+	font-size: 18px;
+}
+
+footer ul li a i{
+	font-size: 21px;
+	color: #BCBCBC;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+.footer-container {
+  background-color: aliceblue;
+    padding: 79px 69px;
+}
+.footer-containertent {
+}
+.footer-container a {
+	color: #999;
+}
+.footer-container a:hover {
+	opacity: 0.6;
+}
+.footer-container ul li {
+	color: #949494;
+	padding-top: 8px;
+}
+
+.footer-container ul li i{
+	margin-right: 10px;
+	font-size: 20px;
+}
+.footer-social-info li {
+	width: 44px;
+	height: 44px;
+	margin: 0px 15px 0px auto;
+	text-align: center;
+	float: left;
+	padding: 8px;
+	border: 1px solid #6E6E6E;
+	border-radius: 50%;
+}
+
+  </style>
+<nav class="navbar navbar-inverse">
+  <div class="container" style="justify-content: flex-start !important;">
+
+    <ul class="nav navbar-nav" style="display: flex;flex-direction: row;justify-content: flex-start;">
+
+      <li class="active"><a href="/admin/dashboard">Dashboard</a></li>
+
+      <li><a href="/admin/customerReq">Customer Request</a></li>
+      <li><a href="/admin/appointment">Appointments</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" style="display: flex;flex-direction: row;    flex-grow: 1;
+    justify-content: flex-end;">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Employee Name</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{item.supname}}</td>
+        <td>{{item.contact}}</td>
+        <td>{{item.email}}</td>
+        <td style="display: flex;"><button class="btn btn-danger" data-toggle="modal" data-target="#delete"
+            (click)="delete(item.supid)">Delete</button><button data-toggle="modal" data-target="#edit" class="btn btn-info" style="margin-left: 12px;" (click)="edituser(item.supid)">Edit</button></td>
+
+      </tr>
+
+    </tbody>
+  </table>
+  <!-- model delete -->
+  <div class="modal fade" id="delete" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete </h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure want to delete this employee ? </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"
+            (click)="deleteEmp()">Yes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">No</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="modal fade" id="edit" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit </h4>
+        </div>
+        <div class="modal-body">
+          <form #userupdate = "ngForm" (ngSubmit) = "onClickSubmit(userupdate.value)">
+              <div class="form-group">
+                  <label for="email">Name:</label>
+                  <input type="text" class="form-control" name="supname" [(ngModel)]="supname" placeholder="Enter name">
+                </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">contact:</label>
+              <input type="text" class="form-control" name="contact" [(ngModel)]="contact" placeholder="Enter contact">
+            </div>
+            
+            <button type="submit" class="btn btn-danger">Update</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">No</button> 
+          </form>
+        </div>
+       
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- end -->
+<!-- footer -->
+<section class="footer-container">
+    <div class="container">
+        <div class="row footer-containertent">
+            <div class="col-md-4">
+                <img src="images/logo.png" alt="">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et porro quos iste ratione doloribus asperiores, error omnis delectus rerum sapiente. Et, aliquam modi beatae quae in perferendis ab est fugiat!</p>
+            </div>
+            <div class="col-md-4">
+                <h4>News & Updates</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, nam corporis quas, saepe minima error aperiam dolorum aliquam, quis deserunt eos eius quisquam odio itaque.</p>
+            </div>
+            <div class="col-md-4 contac-us">
+                <h4>Contact Us</h4>
+                <p>Lorem ipsum dolor sit amet adipisicing elit.</p>
+      <ul>
+                        <li><i class="fa fa-home"></i>123 New Venu Street</li>
+                        <li><i class="fa fa-phone"></i>001 123 12345 99</li>
+                        <li><i class="fa fa-envelope-o"></i>support@website.com</li>
+                    </ul> 
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+
+    <div class="container">
+        <div class="row">
+            <div class="footer-containertent">
+
+                <ul class="footer-social-info">
+                    <li>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                </ul>
+      <br/><br/>
+<p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a>, All rights reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- end -->

@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Car';
+  token = localStorage.getItem("token");
+  isLogin=true;
+ constructor(){
+  if(this.token)
+  {
+    this.isLogin=false;
+  }
+
+ }
+  
+  
 }

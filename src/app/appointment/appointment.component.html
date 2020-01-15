@@ -1,0 +1,78 @@
+<nav class="navbar navbar-inverse">
+  <div class="container" style="justify-content: flex-start !important;">
+
+    <ul class="nav navbar-nav" style="display: flex;flex-direction: row;justify-content: flex-start;">
+
+      <li><a href="/admin/dashboard">Dashboard</a></li>
+
+      <li><a href="/admin/customerReq">Customer Request</a></li>
+      <li class="active"><a href="/admin/appointment">Appointments</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" style="display: flex;flex-direction: row;    flex-grow: 1;
+      justify-content: flex-end;">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Appointments ID</th>
+        <th>Appointments Date</th>
+        <th>Appointments Time</th>
+        <th>Car ID</th>
+        <th>Customer ID</th>
+        <th>supervisor ID</th>
+        <th>supervisor Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{item.appid}}</td>
+        <td>{{item.appdate}}</td>
+
+        <td>{{item.apptime}}</td>
+
+        <td>{{item.carid}}</td>
+        <td>{{item.custid}}</td>
+        <td>{{item.supid}}</td>
+        <td>{{item.sup_name}}</td>
+        <td style="display: flex;">
+        <button class="btn btn-danger" data-toggle="modal" data-target="#pending"
+        (click)="pending(item.supid)">Pending</button>
+        <button data-toggle="modal" data-target="#done" class="btn btn-info" style="margin-left: 12px;"
+         (click)="done(item.supid)">Done</button></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <!-- done model -->
+
+
+  <div class="modal fade" id="done" role="dialog">
+      <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete </h4>
+          </div>
+          <div class="modal-body">
+            <p>Your Appointment has been completed </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"
+              (click)="deleteEmp()">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">No</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+
+  <!-- end model -->
